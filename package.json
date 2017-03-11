@@ -1,0 +1,15 @@
+{
+  "name": "jest-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "babel-jest": "^19.0.0",
+    "babel-preset-env": "^1.2.1",
+    "jest": "^19.0.2",
+    "xhr": "^2.4.0"
+  }
+}

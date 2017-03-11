@@ -1,12 +1,14 @@
-# Jest in 2 minutes
+# Jest in 5 minutes
 
 Jest is a JavaScript testing framework. It has several key features
 that we like:
 
-- Babel integration. Jest works with Babel. Out of the box. No hassles.
 - Batteries included. Jest ships with powerful mocking capabilities,
   an assertion library, a robust watch mode, and handles code coverage
   out of the box.
+- Babel integration. Jest works with Babel. Out of the box. No
+  hassles.
+- JSDOM. Simulate the DOM environment for fast unit testing.
 - Snapshot testing. Jest has a snapshot feature that allows you to
   write assertions against diffs of serializable information.
 
@@ -38,4 +40,46 @@ test('serializes to a JSON structor', function () {
 
   expect(JSON.stringify(user)).toMatchSnapshot()
 })
+```
+
+## Mock Functions
+
+```
+test('demo mock functions', function () {
+  let handler = jest.fn()
+
+  let button = document.createElement('button')
+
+  button.addEventListener('click', handler)
+  button.click()
+
+  expect(handler).toHaveBeenCalled()
+})
+```
+
+## Mock Modules
+
+```javascript
+// Lives in test/__mocks__/xhr
+export default function (options, callback) {
+  callback(null, { statusCode: 200 }, { success: true })
+}
+```
+
+```javascript
+// test/mock-modules.js
+import xhr from 'xhr'
+
+jest.mock('xhr')
+
+test('mock modules', function (done) {
+  let options = { url: '/sample-url', json: true }
+
+  xhr(options, function (error, response, body) {
+    expect(response.statusCode).toBe(200)
+
+    expect(body).toEqual({ success: true })
+  })
+})
+
 ```

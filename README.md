@@ -60,7 +60,7 @@ test('demo mock functions', function () {
 ## Mock Modules
 
 ```javascript
-// Lives in test/__mocks__/xhr
+// Lives in tests/__mocks__/xhr
 export default function (options, callback) {
   callback(null, { statusCode: 200 }, { success: true })
 }
